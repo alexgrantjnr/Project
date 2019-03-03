@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>add-user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="auth-page">
+
+  <img src="http://placehold.it/300x100" />
+
+  <form [formGroup]="createUserForm">
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!createUserForm.controls['email'].valid && createUserForm.controls['email'].touched">
+    </ion-input>
+  </ion-item>
+  
+  <ion-item class="error-message"
+    *ngIf="!createUserForm.controls['email'].valid && createUserForm.controls['email'].touched">
+    <ion-label>Please enter a valid email address.</ion-label>
+  </ion-item>
+
+  <ion-button (click)="createUser(createUserForm)" expand="block"
+      [disabled]="!createUserForm.valid">
+    Add new User
+    </ion-button>
+  </form>
+  
+</ion-content>>

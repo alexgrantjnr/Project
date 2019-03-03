@@ -1,40 +1,31 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire';
+import { firebaseConfig } from './credentials/credentials';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [
     StatusBar,
+    AngularFireAuth,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    AngularFirestore,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

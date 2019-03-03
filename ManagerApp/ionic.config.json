@@ -1,6 +1,5 @@
 {
   "name": "ManagerApp",
   "integrations": {},
-  "type": "ionic-angular",
-  "id": "23d150e9"
+  "type": "angular"
 }
